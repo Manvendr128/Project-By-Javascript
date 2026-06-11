@@ -13,78 +13,83 @@
 <body>
   <h1>Bat Ball Stump Game</h1>
   <button onclick="
-  let randomnumber = Math.random()*3;
-  let computerchoice;
-  if(randomnumber>0 && randomnumber<=1){
-    computerchoice = 'Bat';
-  }
-  else if(randomnumber>1 && randomnumber<=2){
-    computerchoice='Ball';
-  }
-  else{
-    computerchoice = 'stump';
-  }
-  let result;
-  if(computerchoice=='Ball'){
-    result = 'User Won';
-  }
-  else if(computerchoice='stamp'){
-    result = 'Computer won';
-  }
-  else if(computerchoice=='Bat'){
-    result = 'Game is tie';
-  }
-  alert(`You have choose Bat.computer choice ${computerchoice}.${result}`)
+  let computerchoice = generatecomputerchoice();
+
+  let result = getresult('Bat',computerchoice);
+
+  let finalresult = showresult('Bat',computerchoice,result);
+  
   ">Bat</button>
   <button
   onclick="
-  randomnumber = Math.random()*3;
-  if(randomnumber>0 && randomnumber<=1){
-    computerchoice = 'Bat';
-  }
-  else if(randomnumber>1 && randomnumber<=2){
-    computerchoice='Ball';
-  }
-  else{
-    computerchoice = 'stump';
-  }
-  if(computerchoice=='Ball'){
-    result = 'Game is Tie';
-  }
-  else if(computerchoice='stamp'){
-    result = 'User won';
-  }
-  else if(computerchoice=='Bat'){
-    result = 'Computer Won';
-  }
-  alert(`You have choose Ball.computer choice ${computerchoice}.${result}`)
+  computerchoice = generatecomputerchoice();
+
+  result = getresult('Ball',computerchoice); 
+
+  finalresult = showresult('Ball',computerchoice,result);
+
   ">Ball</button>
   <button
   onclick="
-  randomnumber = Math.random()*3;
-  if(randomnumber>0 && randomnumber<=1){
-    computerchoice = 'Bat';
+  computerchoice = generatecomputerchoice();
+
+  result = getresult('Stump',computerchoice);
+
+  finalresult = showresult('Stump',computerchoice,result);
+
+  "
+  >stump</button>
+  <script>
+  function generatecomputerchoice(){
+  let randomnumber = Math.random()*3;
+  if(randomnumber>0 && randomnumber<=1){   
+    return 'Bat';
   }
   else if(randomnumber>1 && randomnumber<=2){
-    computerchoice='Ball';
+    return 'Ball';
   }
   else{
-    computerchoice = 'stump';
+    return 'Stump';
   }
-  result;
-  if(computerchoice=='Ball'){
-    result = 'Computer Won';
+  }  
+  function getresult(usermove,computermove){
+    if(usermove==='Bat'){
+      if(computermove==='Ball'){
+        return 'User Won';
+      }
+      else if(computermove==='Bat'){
+        return 'Game Is Tie';
+      }
+      else if(computermove==='Stump'){
+        return 'Computer Won'
+      }
+    }
+    else if(usermove==='Ball'){
+      if(computermove==='Ball'){
+        return 'Game is Tie';
+      }
+      else if(computermove==='Bat'){
+        return 'Computer Won';
+      }
+      else if(computermove==='Stump'){
+        return 'User Won';
+      }
+    }
+    else if(usermove==='Stump'){
+      if(computermove==='Ball'){
+        return 'Computer Won';
+      }
+      else if(computermove==='Bat'){
+        return 'User Won';
+      }
+      else if(computermove==='Stump'){
+        return 'Game is Tie';
+      }
+    }
   }
-  else if(computerchoice='stamp'){
-    result = 'Game is Tie';
+  function showresult(usermove,computermove,result){
+    alert(`You have chosen ${usermove}.Computer have chosen ${computermove}.${result}`);
   }
-  else if(computerchoice=='Bat'){
-    result = 'User Won';
-  }
-  alert(`You have choose Stamp.computer choice ${computerchoice}.${result}`)
-  "
-  >stamp</button>
-  <script>
   </script>
 </body>
 </html>
